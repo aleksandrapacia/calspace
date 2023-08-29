@@ -13,10 +13,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return const Scaffold(
       bottomNavigationBar: GNav(tabs: [
-        GButton(icon: Icons.home),
-        GButton(icon: Icons.calendar_month),
-        GButton(icon: Icons.article),
-        GButton(icon: Icons.login)
+        GButton(icon: Icons.home, text: 'Home'),
+        GButton(icon: Icons.calendar_month, text: 'Calendar'),
+        GButton(icon: Icons.article, text: 'Articles'),
+        GButton(icon: Icons.login, text: 'LogIn')
       ]),
     );
   }
