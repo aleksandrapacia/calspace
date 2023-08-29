@@ -1,5 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
+<<<<<<< HEAD
+=======
+import 'package:calspace/pages/home_page.dart';
+>>>>>>> b45240a74cb07c929e0e25f8ef07c7b6ff3bf72a
 import 'package:flutter/material.dart';
 
 void main() {

@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
           tabBackgroundColor: Color.fromARGB(255, 157, 121, 255),
           padding: EdgeInsets.all(16),
           tabs: [
-            GButton(icon: Icons.home, text: 'Home'),
+            GButton(icon: Icons.home, text: 'Home 01'),
             GButton(icon: Icons.calendar_month, text: 'Calendar'),
             GButton(icon: Icons.article, text: 'Articles'),
             GButton(icon: Icons.login, text: 'LogIn')
