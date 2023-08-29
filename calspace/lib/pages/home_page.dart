@@ -12,7 +12,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      bottomNavigationBar: GNav(tabs: [
+      bottomNavigationBar: GNav(gap: 8, tabs: [
         GButton(icon: Icons.home, text: 'Home'),
         GButton(icon: Icons.calendar_month, text: 'Calendar'),
         GButton(icon: Icons.article, text: 'Articles'),
