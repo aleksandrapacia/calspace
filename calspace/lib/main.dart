@@ -27,12 +27,6 @@ final _router = GoRouter(
             GoRoute(
               path: '/',
               builder: (context, state) => HomePage(),
-              routes: <RouteBase>[
-                GoRoute(
-                  path: 'calendarpage',
-                  builder: (context, state) => CalendarPage(),
-                )
-              ],
             )
           ],
         ),
