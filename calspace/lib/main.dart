@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:calspace/pages/articles_page.dart';
 import 'package:calspace/pages/calendar_page.dart';
 import 'package:calspace/pages/home_page.dart';
 import 'package:flutter/material.dart';
@@ -30,11 +31,21 @@ final _router = GoRouter(
             )
           ],
         ),
-        StatefulShellBranch(routes: <RouteBase>[
-          GoRoute(
+        StatefulShellBranch(
+          routes: <RouteBase>[
+            GoRoute(
               path: '/calendarpage',
               builder: (context, state) {
                 return CalendarPage();
+              },
+            )
+          ],
+        ),
+        StatefulShellBranch(routes: <RouteBase>[
+          GoRoute(
+              path: '/articlespage',
+              builder: (context, state) {
+                return Articles();
               })
         ])
       ],
