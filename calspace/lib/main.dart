@@ -117,7 +117,7 @@ class AnimatedBranchContainer extends StatelessWidget {
           duration: const Duration(milliseconds: 400),
           child: AnimatedOpacity(
             opacity: index == currentIndex ? 1 : 0,
-            duration: Duration(milliseconds: 400),
+            duration: Duration(milliseconds: 600),
             child: _branchNavigatorWrapper(index, navigator),
           ),
         );
