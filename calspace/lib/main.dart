@@ -3,6 +3,7 @@
 import 'package:calspace/pages/articles_page.dart';
 import 'package:calspace/pages/calendar_page.dart';
 import 'package:calspace/pages/home_page.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -10,24 +11,37 @@ void main() {
   runApp(const MyApp());
 }
 
-final _rootNavigatorKey = GlobalKey<NavigatorState>();
-final _sectionNavigatorKey = GlobalKey<NavigatorState>();
+//final _rootNavigatorKey = GlobalKey<NavigatorState>();
+//final _sectionNavigatorKey = GlobalKey<NavigatorState>();
 
-final _router = GoRouter(
+final GlobalKey<NavigatorState> _rootNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'root');
+final GlobalKey<NavigatorState> _tabNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'tabNav');
+
+final GoRouter _router = GoRouter(
   navigatorKey: _rootNavigatorKey,
   initialLocation: '/',
   routes: <RouteBase>[
-    StatefulShellRoute.indexedStack(
-      builder: (context, state, navigationShell) {
-        return ScaffoldWithNavbar(navigationShell);
+    StatefulShellRoute(
+      builder: (BuildContext context, GoRouterState state,
+          StatefulNavigationShell navigationShell) {
+        return navigationShell;
       },
-      branches: [
+      navigatorContainerBuilder: (BuildContext context,
+          StatefulNavigationShell navigationShell, List<Widget> children) {
+        return ScaffoldWithNavbar(
+          navigationShell: navigationShell,
+          children: children,
+        );
+      },
+      branches: <StatefulShellBranch>[
         StatefulShellBranch(
-          navigatorKey: _sectionNavigatorKey,
+          navigatorKey: _tabNavigatorKey,
           routes: <RouteBase>[
             GoRoute(
               path: '/',
-              builder: (context, state) => HomePage(),
+              builder: (BuildContext, GoRouterState state) => HomePage(),
             )
           ],
         ),
@@ -43,7 +57,7 @@ final _router = GoRouter(
         ),
         StatefulShellBranch(routes: <RouteBase>[
           GoRoute(
-              path: '/articlespage',
+              path: '/articlespage/art',
               builder: (context, state) {
                 return Articles();
               })
@@ -54,32 +68,70 @@ final _router = GoRouter(
 );
 
 class ScaffoldWithNavbar extends StatelessWidget {
-  const ScaffoldWithNavbar(this.navigationShell, {super.key});
+  const ScaffoldWithNavbar(
+      {super.key, required this.navigationShell, required this.children});
 
   final StatefulNavigationShell navigationShell;
+  final List<Widget> children;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: navigationShell,
+      body: AnimatedBranchContainer(
+          currentIndex: navigationShell.currentIndex, children: children),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: navigationShell.currentIndex,
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Tiles'),
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_month), label: 'Calendar')
+              icon: Icon(Icons.home), label: 'Observations'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_month), label: 'Calendar'),
         ],
-        onTap: _onTap,
+        currentIndex: navigationShell.currentIndex,
+        onTap: (int index) => _onTap(context, index),
       ),
     );
   }
 
-  void _onTap(index) {
+  void _onTap(BuildContext context, int index) {
     navigationShell.goBranch(
       index,
       initialLocation: index == navigationShell.currentIndex,
     );
   }
+}
+
+class AnimatedBranchContainer extends StatelessWidget {
+  const AnimatedBranchContainer(
+      {super.key, required this.currentIndex, required this.children});
+
+  final int currentIndex;
+  final List<Widget> children;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+        children: children.mapIndexed(
+      (int index, Widget navigator) {
+        return AnimatedScale(
+          scale: index == currentIndex ? 1 : 1.5,
+          duration: const Duration(milliseconds: 400),
+          child: AnimatedOpacity(
+            opacity: index == currentIndex ? 1 : 0,
+            duration: Duration(milliseconds: 400),
+            child: _branchNavigatorWrapper(index, navigator),
+          ),
+        );
+      },
+    ).toList());
+  }
+
+  Widget _branchNavigatorWrapper(int index, Widget navigator) => IgnorePointer(
+        ignoring: index != currentIndex,
+        child: TickerMode(
+          enabled: index == currentIndex,
+          child: navigator,
+        ),
+      );
 }
 
 class MyApp extends StatelessWidget {
