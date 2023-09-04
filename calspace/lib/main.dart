@@ -55,13 +55,16 @@ final GoRouter _router = GoRouter(
             )
           ],
         ),
-        StatefulShellBranch(routes: <RouteBase>[
-          GoRoute(
-              path: '/articlespage/art',
+        StatefulShellBranch(
+          routes: <RouteBase>[
+            GoRoute(
+              path: '/articlespage',
               builder: (context, state) {
                 return Articles();
-              })
-        ])
+              },
+            )
+          ],
+        )
       ],
     )
   ],
