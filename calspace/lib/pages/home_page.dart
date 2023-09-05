@@ -9,6 +9,13 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+class Todo {
+  final String title;
+  final String descritpion;
+
+  const Todo(this.title, this.descritpion);
+}
+
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
