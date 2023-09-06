@@ -50,7 +50,10 @@ final GoRouter _router = GoRouter(
             GoRoute(
               path: '/calendarpage',
               builder: (context, state) {
-                return CalendarPage();
+                return CalendarPage(
+                  passedColor: Colors.red,
+                  passedColorName: '0',
+                );
               },
             )
           ],
