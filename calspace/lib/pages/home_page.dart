@@ -31,20 +31,6 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ElevatedButton(
-              child: Text('DIALOG'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => CalendarPage(
-                      passedColor: Colors.pink,
-                      passedColorName: 'Blue',
-                    ),
-                  ),
-                );
-              },
-            ),
-            ElevatedButton(
               child: Text('Blue'),
               onPressed: () {
                 Navigator.push(
@@ -57,7 +43,22 @@ class _HomePageState extends State<HomePage> {
                   ),
                 );
               },
-            )
+            ),
+            Container(color: Colors.transparent, width: 100, height: 500),
+            FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => CalendarPage(
+                      passedColor: Colors.pink,
+                      passedColorName: 'Blue',
+                    ),
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),
