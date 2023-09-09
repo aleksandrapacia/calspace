@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
             ),
             Container(color: Colors.transparent, width: 100, height: 500),
             FloatingActionButton(
-              child: Icon(Icons.add),
+              backgroundColor: Colors.deepPurpleAccent,
               onPressed: () {
                 Navigator.push(
                   context,
@@ -58,6 +58,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 );
               },
+              child: Icon(Icons.add),
             ),
           ],
         ),
