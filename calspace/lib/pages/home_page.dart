@@ -31,6 +31,20 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ElevatedButton(
+              child: Text('DIALOG'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => CalendarPage(
+                      passedColor: Colors.pink,
+                      passedColorName: 'Blue',
+                    ),
+                  ),
+                );
+              },
+            ),
+            ElevatedButton(
               child: Text('Blue'),
               onPressed: () {
                 Navigator.push(
