@@ -46,7 +46,6 @@ class _HomePageState extends State<HomePage> {
             ),
             Container(color: Colors.transparent, width: 100, height: 500),
             FloatingActionButton(
-              backgroundColor: Colors.deepPurpleAccent,
               onPressed: () {
                 Navigator.push(
                   context,
@@ -65,7 +64,6 @@ class _HomePageState extends State<HomePage> {
       ),
       appBar: AppBar(
         title: Center(child: const Text('Observations')),
-        backgroundColor: Colors.deepPurpleAccent,
       ),
     );
   }

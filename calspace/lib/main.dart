@@ -152,6 +152,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'CalSpace',
+      theme: ThemeData(primarySwatch: Colors.purple),
       debugShowCheckedModeBanner: false,
       routerConfig: _router,
       //routerDelegate: _router.routerDelegate,

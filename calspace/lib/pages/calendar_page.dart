@@ -36,7 +36,6 @@ class _CalendarPageState extends State<CalendarPage> {
       ),
       appBar: AppBar(
         title: const Center(child: Text('Calendar Page')),
-        backgroundColor: Colors.deepPurpleAccent,
         automaticallyImplyLeading: false,
       ),
     );

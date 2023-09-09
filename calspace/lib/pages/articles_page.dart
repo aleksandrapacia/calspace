@@ -11,8 +11,6 @@ class _ArticlesState extends State<Articles> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            backgroundColor: Colors.deepPurpleAccent,
-            title: const Center(child: Text('Articles'))));
+        appBar: AppBar(title: const Center(child: Text('Articles'))));
   }
 }
