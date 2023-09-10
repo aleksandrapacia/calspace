@@ -10,9 +10,25 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  void _XTap(BuildContext context) {
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) {
+        return Dialog(
+          backgroundColor: Colors.amber,
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _XTap(context),
+        child: Icon(Icons.add),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -37,28 +53,12 @@ class _HomePageState extends State<HomePage> {
                   context,
                   MaterialPageRoute(
                     builder: (_) => CalendarPage(
-                      passedColor: Colors.blue,
-                      passedColorName: 'Blue',
-                    ),
+                        passedColor: Colors.blue, passedColorName: 'Blue'),
                   ),
                 );
               },
             ),
             Container(color: Colors.transparent, width: 100, height: 500),
-            FloatingActionButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => CalendarPage(
-                      passedColor: Colors.pink,
-                      passedColorName: 'Blue',
-                    ),
-                  ),
-                );
-              },
-              child: Icon(Icons.add),
-            ),
           ],
         ),
       ),
