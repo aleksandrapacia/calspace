@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   void _XTap(BuildContext context) {
     showDialog(
-      barrierDismissible: false,
+      barrierDismissible: true,
       context: context,
       builder: (context) {
         return Dialog(
